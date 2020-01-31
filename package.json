@@ -1,0 +1,30 @@
+{
+  "name": "desafio-star-wars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node -r ./dotenv/config app/index.js",
+    "dev": "NODE_ENV=dev node -r ./dotenv/config app/index.js",
+    "debug": "NODE_ENV=debug node -r ./dotenv/config inspect app/index.js",
+    "test": "NODE_ENV=test jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/antonio.coutinho.gouvea/desafio-star-wars.git"
+  },
+  "author": "Antonio Carlos Coutinho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/antonio.coutinho.gouvea/desafio-star-wars/issues"
+  },
+  "homepage": "https://gitlab.com/antonio.coutinho.gouvea/desafio-star-wars#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jest": "^25.1.0",
+    "mongoose": "^5.8.10"
+  }
+}
