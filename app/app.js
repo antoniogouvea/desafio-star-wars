@@ -4,7 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const errorHandler = require('./middlewares/errorHandler')
 const { color } = require('./constants')
-
+const planetRouter = require('./routes/planet.routes');
 class App {
 
   constructor() {
@@ -41,6 +41,7 @@ class App {
   loadRoutes() {
     console.log(color.BLUE, '\nLOADING ROUTES')
     this.requireDirectory('routes')
+    this.app.use('/api', planetRouter)
   }
 
   run() {
