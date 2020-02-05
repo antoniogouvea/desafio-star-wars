@@ -1,25 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const PlanetController = require('../controllers/planet.controller');
-this.planetController = new PlanetController()
+const planetController = new PlanetController()
 
 router.route('/planet')
     .get(async (req, res, next) => {
-        console.log('123')
+        await this.planetController.findPlanet()
         res.send('123')
         next()
     })
-    .post(async (req, res) => {
-        try {
-            let planeta = req.body
-            await this.planetController.addPlanet(planeta)
-            
-            res.status(200).send('Adicionado')
-        } catch (error) {
-            res.status(400).send('Erro ao adicionar')
-        }
+    .post(planetController.addPlanet)
 
-    })
+    // .get('/:id',async (req, res, next) => {
+    //     await this.planetController.findPlanet()
+    //     res.send('123')
+    //     next()
+    // })
 
 
 

@@ -1,21 +1,21 @@
-const PlanetModel = require('../models/planet.model')
+const PlanetService = require('../services/planet.service');
+const planetService = new PlanetService()
 class PlanetController {
     constructor() {
-    }
-    async addPlanet(planet) {
-        console.log(planet)
-        let planetModel = new PlanetModel(planet)
-        console.log(planetModel)
-        await planetModel.save((error,planet) => {
-            if (error) {
-                console.log('123')
-                throw Error('Erro ao adicionar')
 
-            }
-            console.log('feito',planet)
-            return 
-            
-        })
+    }
+    async addPlanet(req, res) {
+        try {
+            let planet = req.body
+            let retorno = await planetService.getPlanet(planet.nome)
+            let qtdFilmes = retorno.data.results[0].films.length
+            planet.qtdFilmes = qtdFilmes
+            planetService.insert(planet)
+            res.status(200).send('Adicionado')
+        } catch (error) {
+            res.status(400).send('Erro ao adicionar')
+        }
+        return
     }
 
 }
