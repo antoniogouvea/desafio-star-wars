@@ -6,20 +6,24 @@ class PlanetService {
             baseURL: 'https://swapi.co/api'
         })
     }
-    async getPlanet(planetName) {
-try {
-    return await this.planet.get(`/planets/?search=${planetName}`)
-} catch (error) {
-    console.error(error)
-}
-   
-        
+     getPlanet(planetName) {
+            return this.planet.get(`/planets/?search=${planetName}`)
     }
 
-    async insert(data) {
+     insert(data) {
         let planet = new planetModel(data)
-        return await planet.save()     
+        return planet.save()
     }
+     findPlanet(query, fields){
+        return  planetModel.find(query,fields)
+    }
+    delete(data){
+        return planetModel.deleteOne(data)
+    }
+    findPlanetById(data){
+        return planetModel.findById(data)
+    }
+
 }
 
 module.exports = PlanetService

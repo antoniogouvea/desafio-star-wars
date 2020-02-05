@@ -12,12 +12,13 @@ class App {
     this.run()
   }
 
-  requireDirectory(path) {
+  requireDirectory(path, passApp) {
     const files = fs.readdirSync(`${__dirname}/${path}`)
 
     files.forEach(file => {
       console.log(color.GREEN, file)
-      require(`${__dirname}/${path}/${file}`)
+      if (passApp) require(`${__dirname}/${path}/${file}`)(this.app)
+      else require(`${__dirname}/${path}/${file}`)
     })
   }
 
@@ -40,8 +41,7 @@ class App {
 
   loadRoutes() {
     console.log(color.BLUE, '\nLOADING ROUTES')
-    this.requireDirectory('routes')
-    this.app.use('/api', planetRouter)
+    this.requireDirectory('routes', true)
   }
 
   run() {
