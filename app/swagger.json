@@ -1,0 +1,186 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Esse é o swagger para uso e documentação da API ",
+    "version": "1.0.0",
+    "title": "Swagger Desafio Star Wars",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "antonio.coutinho.gouvea@gmail.com"
+    },
+    "host": "http://localhost:8080/"
+  },
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/planet": {
+      "post": {
+        "tags": [
+          "planet"
+        ],
+        "summary": "Adiciona um novo planeta no banco",
+        "operationId": "addPlanet",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto que adiciona um novo planeta",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Planeta"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "planet"
+        ],
+        "summary": "Recupera todos os planetas do Banco",
+        "operationId": "getPlanet",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Erro ao recupar os dados"
+          }
+        }
+      }
+    },
+    "/api/planet/{id}": {
+      "get": {
+        "tags": [
+          "planet"
+        ],
+        "summary": "Procura os planetas pelo id",
+        "operationId": "findPlanetById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do planeta",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "objext",
+              "items": {
+                "$ref": "#/definitions/Planeta"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/api/planet/delete/{id}": {
+      "delete": {
+        "tags": [
+          "planet"
+        ],
+        "summary": "Deleta os planetas pelo id",
+        "operationId": "deletePlanetById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do planeta",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Planeta"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Planeta": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Yavin IV"
+        },
+        "clima": {
+          "type": "string",
+          "example": "temperate, tropical"
+        },
+        "terreno": {
+          "type": "string",
+          "example": "jungle, rainforests"
+        },
+        "qtdFilmes": {
+          "type": "intenger",
+          "example": 1
+        }
+      }
+    },
+    "PlanetaId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "5e3aac511bfccbd5b29850b0"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Yavin IV"
+        },
+        "clima": {
+          "type": "string",
+          "example": "temperate, tropical"
+        },
+        "terreno": {
+          "type": "string",
+          "example": "jungle, rainforests"
+        },
+        "qtdFilmes": {
+          "type": "intenger",
+          "example": 1
+        }
+      }
+    }
+  }
+}

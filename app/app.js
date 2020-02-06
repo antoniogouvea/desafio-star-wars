@@ -5,10 +5,13 @@ const bodyParser = require('body-parser')
 const errorHandler = require('./middlewares/errorHandler')
 const { color } = require('./constants')
 const planetRouter = require('./routes/planet.routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 class App {
 
   constructor() {
     this.app = express()
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     this.run()
   }
 
